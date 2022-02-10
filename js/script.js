@@ -38,6 +38,7 @@ var server_data = {
     }
 };
 
+var ArrayNewDates = [];
 
 // TODO: Componente edit-form
 Vue.component('edit-form', {
@@ -47,7 +48,12 @@ Vue.component('edit-form', {
 // TODO: Componente item-data
 Vue.component('item-data', {
     template: '#itemData',
-    props: ["movie"],
+    props: ["movie", "busca"],
+    methods: {
+            toggleEditFormVisibility: function (busca){
+                ArrayNewDates.push(busca);
+            }
+    }
 })
 
 // Aplicación VueJS

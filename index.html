@@ -26,11 +26,13 @@
             <div class="jumbotron">
               <h1 class="display-4" id="title">{{ col.collection.title }}</h>
             </div>
-                  <div class="card-group">
-                    <div class="card" style="width: 18rem">
+                  <div class="card-group" style="margin:0 50px;">
                       <item-data v-for="item in col.collection.items"
-                                  :movie="item" ></item-data>
-                    </div>
+                                 v.if="!ArrayNewDates.includes(col.collection.items.indexOf(item))"
+                                 :movie="item"
+                                 :busca="col.collection.items.indexOf(item)"
+                                 :key="col.collection.items.indexOf(item)">
+                      </item-data>
                   </div>
             </div>
         </div>
@@ -51,11 +53,13 @@
         <!-- Plantilla para el componente item-data -->
         <script type="text/x-template" id="itemData">
             <div class="card" style="width: 18rem;">
-              <div class="card-body" v-for="data in movie.data">
-                <dl>
+              <div class="card-body">
+                <dl  v-for="data in movie.data">
                   <dt class="card-title"> {{ data.prompt }}</dt>
+                  <dd class="card-text"> {{ data.value }}</dd>
                 </dl>
-                <dt class="card-text"> {{ data.value }}</dt>
+                <a v-bind:href="movie.href" class="btn btn-primary" style="width: 75px; display:inline;">Ver</a>
+                <button type="button" class="btn btn-secondary" style="width: 75px;" @click="toggleEditFormVisibility(busca)">Editar</button>
               </div>
             </div>
         </script>
@@ -70,3 +74,7 @@
     </body>
 
 </html>
+<!--
+  v-on: especifica que hacer cuando se presioan el botón / se abrevia con @
+  v-on:keyup.enter="" esccuha al presioanr enter
+-->
