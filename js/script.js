@@ -45,7 +45,7 @@ Vue.component('edit-form', {
     template: '#editForm',
     props: ["movie", "busca"],
     methods: {
-        closeForm : function (busca){
+        closeForm: function(busca){
                 ArrayNewDates.splice(ArrayNewDates.indexOf(busca),1); /*Busca en el array el elemento y lo elimina*/
             }
     }

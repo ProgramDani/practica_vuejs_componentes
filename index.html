@@ -28,7 +28,7 @@
             </div>
                   <div class="card-group" style="margin:0 50px;">
                       <item-data v-for="item in col.collection.items"
-                                 v.if="!ArrayNewDates.includes(col.collection.items.indexOf(item))"
+                                 v-if="!ArrayNewDates.includes(col.collection.items.indexOf(item))"
                                  :movie="item"
                                  :busca="col.collection.items.indexOf(item)"
                                  :key="col.collection.items.indexOf(item)"></item-data>
@@ -41,15 +41,14 @@
 
         <!-- Plantilla para el componente edit-form -->
         <script type="text/x-template" id="editForm">
-          <div class="card" style="width: 18rem;">
+          <div class="card">
             <div class="card-body">
               <dl v-for="data in movie.data">
                 <dt>{{ data.prompt }}</dt>
                 <input type="text"  v-model="dato.value" :id="dato.name + busca" style="width:90%">
                 <textarea v-else v-model="data.value" :id="dato.name + busca" name="box" id="" cols="30" rows="10"></textarea>
               </dl>
-
-              <button @click="closeForm(event)" class="btn btn-secondary">Close</button>
+              <button @click="closeForm(busca)" class="btn btn-secondary">Close</button>
             </div>
           </div>
         </script>
