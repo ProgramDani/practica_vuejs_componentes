@@ -42,7 +42,13 @@ var ArrayNewDates = [];
 
 // TODO: Componente edit-form
 Vue.component('edit-form', {
-    template: '#editForm'
+    template: '#editForm',
+    props: ["movie", "busca"],
+    methods: {
+        closeForm : function (busca){
+                ArrayNewDates.splice(ArrayNewDates.indexOf(busca),1); /*Busca en el array el elemento y lo elimina*/
+            }
+    }
 })
 
 // TODO: Componente item-data
