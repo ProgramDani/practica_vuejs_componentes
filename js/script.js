@@ -38,38 +38,56 @@ var server_data = {
     }
 };
 
-var ArrayNewDates = [];
-
-// TODO: Componente edit-form
+/// TODO: Componente edit-form
 Vue.component('edit-form', {
-    template: '#editForm',
-    props: peli:{
-        col: server_data
+    data: function  () {
+        return{
+
+        }
     },
-    methods: {
-        closeForm: function(busca){
-                ArrayNewDates.splice(ArrayNewDates.indexOf(busca),1); /*Busca en el array el elemento y lo elimina*/
-            }
-    }
+    props: ["itemdata"],
+
+    template : '#editForm'
+    
 })
 
 // TODO: Componente item-data
 Vue.component('item-data', {
-    template: '#itemData',
-    props: ["peli"],
-    methods: {
-            toggleEditFormVisibility: function (busca){
-                ArrayNewDates.push(busca);
+    data: function  () {
+        return{
+            datos: true,
+            edicion: false,
+
+        }         
+    },
+    props: ["item"],
+
+    methods:{
+            toggleEditFormVisibility()
+            {
+                    this.datos = false;
+                    this.edicion = true;
+            },
+            formClose()
+            {
+                this.datos = true;
+                this.edicion = false;
             }
-    }
+        
+    },
+
+    template : '#itemData'
+        
 })
+
 
 // Aplicación VueJS
 // La aplicación recibe los datos en la variable de datos "col"
 var app = new Vue({
     el: '#app',
     data: {
-        col: server_data
+        col: server_data,
+        item:server_data. collection.items
     }
 });
 
